@@ -1,44 +1,68 @@
 package com.HomeWork.Hillel;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Group {
 
-    protected static String nameCourse;
-    protected static String startOfClasses;
-    protected static int sumOfClasses;
-    protected static int numberClassesOnWeek;
-    protected static ArrayList<Person> studentsOfGroup;
+    protected String nameCourse;
+    protected String startOfClasses;
+    protected int sumOfClasses;
+    protected int numberClassesOnWeek;
+    protected ArrayList<Person> studentsOfGroup = new ArrayList<>();
 
-    public Group (String nameCourse, String startOfClasses, int sumOfClasses, int numberClassesOnWeek){
-        Group.nameCourse = nameCourse;
-        Group.startOfClasses = startOfClasses;
-        Group.sumOfClasses = sumOfClasses;
-        Group.numberClassesOnWeek = numberClassesOnWeek;
+
+    public Group(String nameCourse, String startOfClasses, int sumOfClasses, int numberClassesOnWeek) {
+        this.nameCourse = nameCourse;
+        this.startOfClasses = startOfClasses;
+        this.sumOfClasses = sumOfClasses;
+        this.numberClassesOnWeek = numberClassesOnWeek;
     }
 
-    public static String getNameGroup(){
+    public void arrayStudents(Person person) {
+        this.studentsOfGroup.add(person);
+    }
+
+    public String getNameGroup() {
         return "Курс: " + nameCourse + " (" + startOfClasses + ").";
     }
-    public static String getLastDateOfStudies(){
-        return "На " + (sumOfClasses/numberClassesOnWeek) + " недели будут последнии " + numberClassesOnWeek + " занятия.";
-    }
-    public static ArrayList<Person> listOfGroup (){
-        return studentsOfGroup;
-    }
-    public static void addStudent (Person student){
-        studentsOfGroup.add(student);
-    }
-    public static boolean findStudent(Person arraysLastNames){
-        return Arrays.asList(studentsOfGroup).contains(arraysLastNames);
-    }
-    public static Person[] removeElement(Person[] remainingLastName, int index){
-        List<Person> arrOut = new ArrayList<>(Arrays.asList(remainingLastName));
-        arrOut.remove(index);
-        return arrOut.toArray(new Person[0]);
+
+    public String getLastDateOfStudies(String date) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dateFormat.parse(date));
+        cal.add(Calendar.DATE, ((sumOfClasses / numberClassesOnWeek - 1) * 7));
+        return dateFormat.format(cal.getTime());
     }
 
+    public void listOfGroup() {
+        for (Person person : studentsOfGroup) {
+            System.out.println(person);
+        }
+    }
+
+    public boolean findStudent(String lastNames) {
+        boolean result = false;
+        for (Person person : studentsOfGroup) {
+            if (person.getLastOfStudent().equals(lastNames)) {
+                return result = true;
+            } else {
+                result = false;
+            }
+        }
+        return result;
+    }
+    public void removeElement(String removeElement){
+        Iterator<Person> personIterator = studentsOfGroup.iterator();//создаем итератор
+        while(personIterator.hasNext()) {//до тех пор, пока в списке есть элементы
+            Person nextPerson = personIterator.next();//получаем следующий элемент
+            if (nextPerson.getLastOfStudent().equals(removeElement)) {
+                personIterator.remove();//удаляем ученика с нужным именем
+            }else if (nextPerson.getStudentNumber().equals(removeElement)){
+                personIterator.remove();
+            }
+        }
+    }
 }
+

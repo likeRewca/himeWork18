@@ -1,35 +1,31 @@
 package com.HomeWork.Hillel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Person {
-    protected static String nameOfStudent;
-    protected static String lastOfStudent;
-    protected static int numberStudent;
 
-    public Person (String name, String lastName, int number){
-        Person.nameOfStudent = name;
-        Person.lastOfStudent = lastName;
-        Person.numberStudent = number;
+    protected String nameOfStudent;
+    protected String lastOfStudent;
+    protected String studentNumber;
+
+
+
+    public Person (String studentNumber, String name, String lastName){
+        this.studentNumber = studentNumber;
+        this.nameOfStudent = name;
+        this.lastOfStudent = lastName;
     }
-
-    public String getNameStudents(){
+    public String getNameOfStudent() {
         return nameOfStudent;
     }
     public String getLastOfStudent(){
         return lastOfStudent;
     }
-    public int getNumberOfStudent(){
-        return numberStudent;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
     @Override
     public String toString() {
-        return "Person{" +
-                "nameOfStudent='" + nameOfStudent + '\'' +
-                ", lastOfStudent='" + lastOfStudent + '\'' +
-                ", numberStudent=" + numberStudent +
-                '}';
+        return "Ученик: " + "№ " + studentNumber + " - "
+                + lastOfStudent + " " + nameOfStudent;
     }
 }
