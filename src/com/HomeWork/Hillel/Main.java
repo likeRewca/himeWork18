@@ -11,11 +11,11 @@ public class Main {
         Person person3 = new Person ("3", "Дональд", "Трамп");
         Person person4 = new Person ("4", "Удот", "Удотович");
         Person person5 = new Person ("5", "Ярик", "Клемешев");
-        group.arrayStudents(person1);
-        group.arrayStudents(person2);
-        group.arrayStudents(person3);
-        group.arrayStudents(person4);
-        group.arrayStudents(person5);
+        group.addStudents(person1);
+        group.addStudents(person2);
+        group.addStudents(person3);
+        group.addStudents(person4);
+        group.addStudents(person5);
 
         print(group.getNameGroup());
         print("==========================");

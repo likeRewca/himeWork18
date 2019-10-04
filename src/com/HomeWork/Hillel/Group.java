@@ -20,7 +20,7 @@ public class Group {
         this.numberClassesOnWeek = numberClassesOnWeek;
     }
 
-    public void arrayStudents(Person person) {
+    public void addStudents(Person person) {
         this.studentsOfGroup.add(person);
     }
 
