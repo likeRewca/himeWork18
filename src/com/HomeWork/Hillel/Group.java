@@ -47,8 +47,6 @@ public class Group {
         for (Person person : studentsOfGroup) {
             if (person.getLastOfStudent().equals(lastNames)) {
                 return result = true;
-            } else {
-                result = false;
             }
         }
         return result;
